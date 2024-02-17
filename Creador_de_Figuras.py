@@ -8,89 +8,53 @@ canvas = Canvas(root,width=990,height=490,bg="white",highlightbackground="lightg
 
 label = Label(root,text="Selecciona un Color")
 fillcolor=["red","green","blue","black"]
-colour_dropdown = ttk.Combobox(root,state="readonly",values=fillcolor,width=10)
+color_dropdown = ttk.Combobox(root,state="readonly",values=fillcolor,width=10)
 
-d1 = Label(root,text="Inicio X")
+startx = Label(root,text="Inicio X")
 
 coordinates_values=[10,50,100,200,300,400,500,600,700,800,900]
-startx = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
+d1 = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
 
-d2 = Label(root,text="Inicio Y")
+starty = Label(root,text="Inicio Y")
 
-starty = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
+d2 = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
 
-d3 = Label(root,text="Final X")
+endx = Label(root,text="Final X")
 
-endx = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
+d3 = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
 
-d4 = Label(root,text="Final Y")
+endy = Label(root,text="Final Y")
 
-endy = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
-
-keypress = ""
-oldx = startx
-newx = starty
-oldy = endx
-newy = endy
+d4 = ttk.Combobox(root,state="readonly",values=coordinates_values,width=10)
 
 def circle(event):
-    global keypress
-    global oldx
-    global newx
-    global oldy
-    global newy
-    
-    startx.get()
-    oldx = startx
-    starty.get()
-    oldy = starty
-    endx.get()
-    newx = endx
-    endy.get()
-    newy = endy
-    keypress = "c"
+    oldx = d1.get()
+    oldy = d2.get()
+    newx = d3.get()
+    newy = d4.get()
+    keypress='c'
     draw(keypress,oldx,oldy,newx,newy)
     
 def rectangle(event):
-    global keypress
-    global oldx
-    global newx
-    global oldy
-    global newy
-    
-    startx.get()
-    oldx = startx
-    starty.get()
-    oldy = starty
-    endx.get()
-    newx = endx
-    endy.get()
-    newy = endy
-    keypress = "r"
+    oldx = d1.get()
+    oldy = d2.get()
+    newx = d3.get()
+    newy = d4.get()
+    keypress='r'
     draw(keypress,oldx,oldy,newx,newy)
     
 def line(event):
-    global keypress
-    global oldx
-    global newx
-    global oldy
-    global newy
-    
-    startx.get()
-    oldx = startx
-    starty.get()
-    oldy = starty
-    endx.get()
-    newx = endx
-    endy.get()
-    newy = endy
-    keypress = "l"
+    oldx = d1.get()
+    oldy = d2.get()
+    newx = d3.get()
+    newy = d4.get()
+    keypress='l'
     draw(keypress,oldx,oldy,newx,newy)
     
 def draw(keypress,oldx,oldy,newx,newy):
-    fill_color = fillcolor.get()
+    color = color_dropdown.get()
     if(keypress == "c"):
-        draw_circle = canvas.create_oval(oldx,oldy,newx,newy, width = 3, fill=color)
+        draw_circle = canvas.create_oval(oldx,oldy,newx,newy, fill=color)
     
     if(keypress == "r"):
         draw_rectangle = canvas.create_rectangle(oldx,oldy,newx,newy, width = 3, fill=color)
@@ -105,7 +69,7 @@ root.bind("<r>",rectangle)
 root.bind("<l>",line)
 
 label.place(relx=0.6,rely=0.9,anchor=CENTER)
-colour_dropdown.place(relx=0.8,rely=0.9,anchor=CENTER)
+color_dropdown.place(relx=0.8,rely=0.9,anchor=CENTER)
 startx.place(relx=0.1,rely=0.85,anchor=CENTER)
 endx.place(relx=0.5,rely=0.85,anchor=CENTER)
 starty.place(relx=0.3,rely=0.85,anchor=CENTER)
